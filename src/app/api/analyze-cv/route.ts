@@ -59,6 +59,7 @@ const skillSuggestionsByPosition: Record<string, SkillSuggestion[]> = {
     { skill: "SQL", type: "technical", level: "low" },
     { skill: "Statistics", type: "technical", level: "low" },
     { skill: "Data Visualization", type: "technical", level: "medium" },
+    { skill: "AI skills", type: "technical", level: "low" },
     { skill: "Business Analysis", type: "soft-skill", level: "medium" },
   ],
   "product-manager": [
@@ -67,6 +68,46 @@ const skillSuggestionsByPosition: Record<string, SkillSuggestion[]> = {
     { skill: "Strategic Planning", type: "soft-skill", level: "low" },
     { skill: "Stakeholder Management", type: "soft-skill", level: "medium" },
     { skill: "Leadership", type: "soft-skill", level: "medium" },
+  ],
+  "ai-engineer-junior": [
+    { skill: "Python", type: "technical", level: "medium" },
+    { skill: "AI skills", type: "technical", level: "high" },
+    { skill: "Machine Learning", type: "technical", level: "low" },
+    { skill: "Data Science", type: "technical", level: "low" },
+    { skill: "Statistics", type: "technical", level: "medium" },
+    { skill: "Problem Solving", type: "soft-skill", level: "medium" },
+  ],
+  "ai-engineer-middle": [
+    { skill: "AI skills", type: "technical", level: "high" },
+    { skill: "Deep Learning", type: "technical", level: "medium" },
+    { skill: "MLOps", type: "technical", level: "low" },
+    { skill: "TensorFlow", type: "technical", level: "medium" },
+    { skill: "PyTorch", type: "technical", level: "medium" },
+    { skill: "Leadership", type: "soft-skill", level: "low" },
+  ],
+  "ai-engineer-senior": [
+    { skill: "AI skills", type: "technical", level: "high" },
+    { skill: "AI Architecture", type: "technical", level: "low" },
+    { skill: "Model Optimization", type: "technical", level: "medium" },
+    { skill: "Research Skills", type: "technical", level: "low" },
+    { skill: "Team Leadership", type: "soft-skill", level: "low" },
+    { skill: "Strategic Thinking", type: "soft-skill", level: "medium" },
+  ],
+  "machine-learning-engineer": [
+    { skill: "AI skills", type: "technical", level: "high" },
+    { skill: "Machine Learning", type: "technical", level: "high" },
+    { skill: "Python", type: "technical", level: "medium" },
+    { skill: "Data Engineering", type: "technical", level: "low" },
+    { skill: "Cloud Computing", type: "technical", level: "medium" },
+    { skill: "Communication", type: "soft-skill", level: "medium" },
+  ],
+  "data-scientist": [
+    { skill: "AI skills", type: "technical", level: "medium" },
+    { skill: "Python", type: "technical", level: "medium" },
+    { skill: "Statistics", type: "technical", level: "high" },
+    { skill: "Data Visualization", type: "technical", level: "low" },
+    { skill: "Research Skills", type: "technical", level: "low" },
+    { skill: "Business Analysis", type: "soft-skill", level: "medium" },
   ],
 };
 
@@ -134,6 +175,11 @@ export async function POST(request: NextRequest) {
         "fullstack-middle": "Fullstack Developer (Middle)",
         "data-analyst": "Data Analyst",
         "product-manager": "Product Manager",
+        "ai-engineer-junior": "AI Engineer (Junior)",
+        "ai-engineer-middle": "AI Engineer (Middle)",
+        "ai-engineer-senior": "AI Engineer (Senior)",
+        "machine-learning-engineer": "Machine Learning Engineer",
+        "data-scientist": "Data Scientist",
       };
 
       const positionName = positionLabels[position] || "Developer";
