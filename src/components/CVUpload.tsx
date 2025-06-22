@@ -51,7 +51,7 @@ export default function CVUpload({ onFileSelect, error }: CVUploadProps) {
       {!selectedFile ? (
         <Card 
           {...getRootProps()} 
-          className={`p-8 border-2 border-dashed transition-colors cursor-pointer hover:bg-gray-50 ${
+          className={`p-6 sm:p-8 border-2 border-dashed transition-colors cursor-pointer hover:bg-gray-50 ${
             isDragActive 
               ? 'border-blue-500 bg-blue-50' 
               : error 
@@ -61,30 +61,32 @@ export default function CVUpload({ onFileSelect, error }: CVUploadProps) {
         >
           <input {...getInputProps()} />
           <div className="text-center">
-            <Upload className={`mx-auto h-12 w-12 ${
+            <Upload className={`mx-auto h-10 w-10 sm:h-12 sm:w-12 ${
               isDragActive ? 'text-blue-500' : 'text-gray-400'
             }`} />
-            <div className="mt-4">
-              <p className="text-lg font-medium text-gray-900">
+            <div className="mt-3 sm:mt-4">
+              <p className="text-base sm:text-lg font-medium text-gray-900">
                 {isDragActive ? 'Drop file here...' : 'Upload your CV'}
               </p>
-              <p className="text-sm text-gray-500 mt-2">
+              <p className="text-sm sm:text-base text-gray-500 mt-2">
                 Drag and drop file here or click to select file
               </p>
-              <p className="text-xs text-gray-400 mt-1">
+              <p className="text-xs sm:text-sm text-gray-400 mt-1">
                 Supports PDF, PNG, JPG (max 5MB)
               </p>
             </div>
           </div>
         </Card>
       ) : (
-        <Card className="p-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <File className="h-8 w-8 text-blue-500" />
-              <div>
-                <p className="font-medium text-gray-900">{selectedFile.name}</p>
-                <p className="text-sm text-gray-500">
+        <Card className="p-3 sm:p-4">
+          <div className="flex items-center justify-between gap-3">
+            <div className="flex items-center space-x-3 min-w-0 flex-1">
+              <File className="h-8 w-8 text-blue-500 flex-shrink-0" />
+              <div className="min-w-0 flex-1">
+                <p className="font-medium text-gray-900 text-sm sm:text-base truncate">
+                  {selectedFile.name}
+                </p>
+                <p className="text-xs sm:text-sm text-gray-500">
                   {formatFileSize(selectedFile.size)}
                 </p>
               </div>
@@ -93,7 +95,7 @@ export default function CVUpload({ onFileSelect, error }: CVUploadProps) {
               variant="ghost"
               size="sm"
               onClick={removeFile}
-              className="text-red-500 hover:text-red-700 hover:bg-red-50"
+              className="text-red-500 hover:text-red-700 hover:bg-red-50 flex-shrink-0"
             >
               <X className="h-4 w-4" />
             </Button>

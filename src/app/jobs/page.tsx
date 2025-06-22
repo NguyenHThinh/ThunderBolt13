@@ -59,21 +59,21 @@ export default function JobsPage() {
       <Header />
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
             Job Opportunities
           </h2>
-          <p className="text-xl text-gray-600">
+          <p className="text-lg sm:text-xl text-gray-600">
             Search and apply for positions that match your skills
           </p>
         </div>
 
         {/* Search and Filters */}
-        <Card className="mb-8 shadow-lg">
+        <Card className="mb-6 sm:mb-8 shadow-lg">
           <CardHeader>
-            <CardTitle className="flex items-center text-xl">
-              <Filter className="mr-3 h-6 w-6" />
+            <CardTitle className="flex items-center text-lg sm:text-xl">
+              <Filter className="mr-3 h-5 w-5 sm:h-6 sm:w-6" />
               Search and Filter Jobs
             </CardTitle>
           </CardHeader>
@@ -91,9 +91,9 @@ export default function JobsPage() {
               </div>
 
               {/* Filters */}
-              <div className="flex flex-row gap-4 w-max">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full">
                 <Select value={positionFilter} onValueChange={setPositionFilter}>
-                  <SelectTrigger>
+                  <SelectTrigger className="w-full sm:w-40">
                     <SelectValue placeholder="Select position" />
                   </SelectTrigger>
                   <SelectContent>
@@ -107,7 +107,7 @@ export default function JobsPage() {
                 </Select>
 
                 <Select value={levelFilter} onValueChange={setLevelFilter}>
-                  <SelectTrigger>
+                  <SelectTrigger className="w-full sm:w-32">
                     <SelectValue placeholder="Select level" />
                   </SelectTrigger>
                   <SelectContent>
@@ -121,7 +121,7 @@ export default function JobsPage() {
                 </Select>
 
                 <Select value={salaryFilter} onValueChange={setSalaryFilter}>
-                  <SelectTrigger>
+                  <SelectTrigger className="w-full sm:w-40">
                     <SelectValue placeholder="Select salary" />
                   </SelectTrigger>
                   <SelectContent>
@@ -137,14 +137,14 @@ export default function JobsPage() {
                 <Button 
                   variant="outline" 
                   onClick={clearFilters}
-                  className="w-max"
+                  className="w-full sm:w-auto"
                 >
                   Clear Filters
                 </Button>
               </div>
 
               {/* Filter Summary */}
-              <div className="flex items-center justify-between text-sm text-gray-600">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between text-sm text-gray-600 gap-2">
                 <span>
                   Showing {filteredJobs.length} / {jobs.length} jobs
                 </span>
@@ -157,46 +157,50 @@ export default function JobsPage() {
         </Card>
 
         {/* Jobs List */}
-        <div className="space-y-6">
+        <div className="space-y-4 sm:space-y-6">
           {filteredJobs.length > 0 ? (
             filteredJobs.map((job) => (
               <Card key={job.id} className="hover:shadow-lg transition-shadow">
-                <CardContent className="p-6">
-                  <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
-                    <div className="flex-1">
-                      <div className="flex items-start justify-between mb-4">
-                        <div>
-                          <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                            {job.title}
-                          </h3>
-                          <div className="flex items-center space-x-4 text-gray-600 mb-2">
-                            <div className="flex items-center">
-                              <Building className="h-4 w-4 mr-1" />
-                              <span>{job.company}</span>
-                            </div>
-                            <div className="flex items-center">
-                              <MapPin className="h-4 w-4 mr-1" />
-                              <span>{job.location}</span>
-                            </div>
-                            <div className="flex items-center">
-                              <DollarSign className="h-4 w-4 mr-1" />
-                              <span>{job.salary}</span>
-                            </div>
+                <CardContent className="p-4 sm:p-6">
+                  <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+                    <div className="flex-1 space-y-3 sm:space-y-4">
+                      <div>
+                        <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">
+                          {job.title}
+                        </h3>
+                        
+                        {/* Job Details - Stack on mobile, inline on larger screens */}
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-gray-600 mb-3">
+                          <div className="flex items-center">
+                            <Building className="h-4 w-4 mr-1 flex-shrink-0" />
+                            <span className="text-sm">{job.company}</span>
                           </div>
-                          <div className="flex items-center space-x-2 mb-3">
-                            <Badge variant="outline">{job.position}</Badge>
-                            <Badge className={getLevelColor(job.level)}>
-                              {job.level}
-                            </Badge>
+                          <div className="flex items-center">
+                            <MapPin className="h-4 w-4 mr-1 flex-shrink-0" />
+                            <span className="text-sm">{job.location}</span>
                           </div>
+                          <div className="flex items-center">
+                            <DollarSign className="h-4 w-4 mr-1 flex-shrink-0" />
+                            <span className="text-sm">{job.salary}</span>
+                          </div>
+                        </div>
+                        
+                        {/* Badges */}
+                        <div className="flex flex-wrap gap-2 mb-3">
+                          <Badge variant="outline" className="text-xs">{job.position}</Badge>
+                          <Badge className={`text-xs ${getLevelColor(job.level)}`}>
+                            {job.level}
+                          </Badge>
                         </div>
                       </div>
                       
-                      <p className="text-gray-600 mb-4 line-clamp-3">
+                      {/* Description */}
+                      <p className="text-gray-600 text-sm sm:text-base line-clamp-3">
                         {job.description}
                       </p>
                     </div>
 
+                    {/* Apply Button */}
                     <div className="lg:ml-6 lg:flex-shrink-0">
                       <Button className="w-full lg:w-auto">
                         Apply Now
@@ -207,13 +211,13 @@ export default function JobsPage() {
               </Card>
             ))
           ) : (
-            <Card className="text-center py-12">
+            <Card className="text-center py-8 sm:py-12">
               <CardContent>
-                <Briefcase className="mx-auto h-16 w-16 text-gray-400 mb-4" />
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                <Briefcase className="mx-auto h-12 w-12 sm:h-16 sm:w-16 text-gray-400 mb-4" />
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">
                   No Matching Jobs Found
                 </h3>
-                <p className="text-gray-600 mb-6">
+                <p className="text-gray-600 mb-4 sm:mb-6">
                   Try adjusting your filters or search terms to see more results.
                 </p>
                 <Button onClick={clearFilters}>
@@ -225,13 +229,13 @@ export default function JobsPage() {
         </div>
 
         {/* Call to Action */}
-        <div className="mt-12 text-center">
+        <div className="mt-8 sm:mt-12 text-center">
           <Card className="bg-blue-50 border-blue-200">
-            <CardContent className="py-12">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+            <CardContent className="py-8 sm:py-12">
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">
                 Haven&apos;t found the right job yet?
               </h3>
-              <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
+              <p className="text-gray-600 mb-4 sm:mb-6 max-w-2xl mx-auto">
                 Analyze your CV to discover skills to improve and get personalized course recommendations.
               </p>
               <Button asChild size="lg">

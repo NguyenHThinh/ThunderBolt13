@@ -88,27 +88,27 @@ export default function HomePage() {
       <Header />
 
       {/* Main Content */}
-      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
             Discover Skills to Improve
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">
             Upload your CV and get personalized course recommendations for your desired position
           </p>
         </div>
 
         <Card className="shadow-xl">
           <CardHeader>
-            <CardTitle className="flex items-center text-2xl">
-              <User className="mr-3 h-6 w-6" />
+            <CardTitle className="flex items-center text-xl sm:text-2xl">
+              <User className="mr-3 h-5 w-5 sm:h-6 sm:w-6" />
               Personal Information
             </CardTitle>
           </CardHeader>
           <CardContent>
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                   <FormField
                     control={form.control}
                     name="level"
@@ -149,7 +149,12 @@ export default function HomePage() {
                           <SelectContent>
                             {jobPositions.map((position) => (
                               <SelectItem key={position.value} value={position.value}>
-                                {position.label} - {position.level} ({position.salary})
+                                <span className="block sm:hidden">
+                                  {position.label} - {position.level}
+                                </span>
+                                <span className="hidden sm:block">
+                                  {position.label} - {position.level} ({position.salary})
+                                </span>
                               </SelectItem>
                             ))}
                           </SelectContent>
@@ -160,7 +165,7 @@ export default function HomePage() {
                   />
                 </div>
 
-                <div className="mt-8">
+                <div className="mt-6 sm:mt-8">
                   <Label className="text-base font-medium mb-4 block">
                     Upload CV *
                   </Label>
@@ -180,7 +185,7 @@ export default function HomePage() {
                   <Button 
                     type="submit" 
                     disabled={isSubmitting} 
-                    className="w-full md:w-auto px-8 py-3 text-lg"
+                    className="w-full sm:w-auto px-6 sm:px-8 py-3 text-base sm:text-lg"
                   >
                     {isSubmitting ? (
                       <>

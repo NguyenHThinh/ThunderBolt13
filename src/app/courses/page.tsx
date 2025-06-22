@@ -113,8 +113,8 @@ export default function CoursesPage() {
       <Header />
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="mb-8">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+        <div className="mb-6 sm:mb-8">
           {hasAnalysis && (
             <Button variant="ghost" onClick={() => router.back()} className="mb-4 !bg-transparent cursor-pointer">
               <ArrowLeft className="mr-2 h-4 w-4" />
@@ -122,11 +122,11 @@ export default function CoursesPage() {
             </Button>
           )}
 
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
               {hasAnalysis ? "Course Recommendations for You" : "Available Courses"}
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-lg sm:text-xl text-gray-600">
               {hasAnalysis 
                 ? "Based on CV analysis, here are recommended courses to improve your skills"
                 : "Explore our course catalog to enhance your skills"
@@ -137,16 +137,16 @@ export default function CoursesPage() {
 
         {/* Analysis Results Summary - Only show if analysis exists */}
         {hasAnalysis && analysisResult && (
-          <Card className="mb-8 shadow-lg">
+          <Card className="mb-6 sm:mb-8 shadow-lg">
             <CardHeader>
-              <CardTitle className="flex items-center text-xl">
-                <TrendingUp className="mr-3 h-6 w-6" />
+              <CardTitle className="flex items-center text-lg sm:text-xl">
+                <TrendingUp className="mr-3 h-5 w-5 sm:h-6 sm:w-6" />
                 CV Analysis Results
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div className="space-y-6">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+                <div className="space-y-4 sm:space-y-6">
                   <div>
                     <h4 className="font-semibold mb-3">Candidate Information</h4>
                     <div className="space-y-2 text-sm">
@@ -169,10 +169,10 @@ export default function CoursesPage() {
                       {analysisResult.suggestions.map((suggestion, index) => (
                         <div
                           key={index}
-                          className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
+                          className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 bg-gray-50 rounded-lg gap-2"
                         >
                           <span className="font-medium">{suggestion.skill}</span>
-                          <div className="flex space-x-2">
+                          <div className="flex flex-wrap gap-2">
                             <Badge className={getTypeColor(suggestion.type)}>
                               {suggestion.type === "technical"
                                 ? "Technical"
@@ -213,42 +213,42 @@ export default function CoursesPage() {
 
         {/* Recommended Courses - Only show if analysis exists */}
         {hasAnalysis && (
-          <div className="mb-8">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-              <BookOpen className="mr-3 h-6 w-6" />
+          <div className="mb-6 sm:mb-8">
+            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 flex items-center">
+              <BookOpen className="mr-3 h-5 w-5 sm:h-6 sm:w-6" />
               Recommended Courses ({recommendedCourses.length})
             </h3>
 
             {recommendedCourses.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                 {recommendedCourses.map((course) => (
                   <Card
                     key={course.id}
                     className="hover:shadow-lg transition-shadow"
                   >
-                    <CardHeader>
-                      <CardTitle className="text-lg">{course.name}</CardTitle>
+                    <CardHeader className="pb-3">
+                      <CardTitle className="text-base sm:text-lg">{course.name}</CardTitle>
                       <div className="flex flex-wrap gap-2">
-                        <Badge variant="outline">{course.skill}</Badge>
-                        <Badge className={getCourseLevelColor(course.level)}>
+                        <Badge variant="outline" className="text-xs">{course.skill}</Badge>
+                        <Badge className={`text-xs ${getCourseLevelColor(course.level)}`}>
                           {course.level}
                         </Badge>
                       </div>
                     </CardHeader>
-                    <CardContent>
+                    <CardContent className="pt-0">
                       <p className="text-gray-600 text-sm mb-4">
                         {course.description}
                       </p>
-                      <div className="flex items-center justify-between">
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                         <span className="text-sm font-medium text-gray-500">
                           {course.platform}
                         </span>
-                        <Button size="sm" asChild>
+                        <Button size="sm" asChild className="w-full sm:w-auto">
                           <a
                             href={course.link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center"
+                            className="flex items-center justify-center"
                           >
                             View Course
                             <ExternalLink className="ml-1 h-3 w-3" />
@@ -260,13 +260,13 @@ export default function CoursesPage() {
                 ))}
               </div>
             ) : (
-              <Card className="text-center py-12">
+              <Card className="text-center py-8 sm:py-12">
                 <CardContent>
-                  <BookOpen className="mx-auto h-16 w-16 text-gray-400 mb-4" />
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                  <BookOpen className="mx-auto h-12 w-12 sm:h-16 sm:w-16 text-gray-400 mb-4" />
+                  <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">
                     No Matching Courses Found
                   </h3>
-                  <p className="text-gray-600 mb-6">
+                  <p className="text-gray-600 mb-4 sm:mb-6">
                     We currently don&apos;t have courses that match the suggested skills.
                   </p>
                   <Button asChild>
@@ -280,15 +280,15 @@ export default function CoursesPage() {
 
         {/* All Available Courses */}
         <div>
-          <h3 className="text-2xl font-bold text-gray-900 mb-6">
+          <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">
             All Available Courses
           </h3>
 
           {/* Search and Filter */}
-          <Card className="mb-6">
+          <Card className="mb-4 sm:mb-6">
             <CardHeader>
-              <CardTitle className="flex items-center text-lg">
-                <Filter className="mr-2 h-5 w-5" />
+              <CardTitle className="flex items-center text-base sm:text-lg">
+                <Filter className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
                 Search and Filter Courses
               </CardTitle>
             </CardHeader>
@@ -306,9 +306,9 @@ export default function CoursesPage() {
                 </div>
 
                 {/* Filters */}
-                <div className="flex flex-row gap-4 w-max">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full">
                   <Select value={levelFilter} onValueChange={setLevelFilter}>
-                    <SelectTrigger>
+                    <SelectTrigger className="w-full sm:w-40">
                       <SelectValue placeholder="Select level" />
                     </SelectTrigger>
                     <SelectContent>
@@ -325,7 +325,7 @@ export default function CoursesPage() {
                     value={platformFilter}
                     onValueChange={setPlatformFilter}
                   >
-                    <SelectTrigger>
+                    <SelectTrigger className="w-full sm:w-40">
                       <SelectValue placeholder="Select platform" />
                     </SelectTrigger>
                     <SelectContent>
@@ -345,7 +345,7 @@ export default function CoursesPage() {
                       setLevelFilter("all");
                       setPlatformFilter("all");
                     }}
-                    className="w-max"
+                    className="w-full sm:w-auto"
                   >
                     Clear Filters
                   </Button>
@@ -359,35 +359,35 @@ export default function CoursesPage() {
             </CardContent>
           </Card>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {filteredAllCourses.map((course) => (
               <Card
                 key={course.id}
                 className={`hover:shadow-lg transition-shadow ${!hasAnalysis ? 'opacity-100' : 'opacity-75'}`}
               >
-                <CardHeader>
-                  <CardTitle className="text-lg">{course.name}</CardTitle>
+                <CardHeader className="pb-3">
+                  <CardTitle className="text-base sm:text-lg">{course.name}</CardTitle>
                   <div className="flex flex-wrap gap-2">
-                    <Badge variant="outline">{course.skill}</Badge>
-                    <Badge className={getCourseLevelColor(course.level)}>
+                    <Badge variant="outline" className="text-xs">{course.skill}</Badge>
+                    <Badge className={`text-xs ${getCourseLevelColor(course.level)}`}>
                       {course.level}
                     </Badge>
                   </div>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="pt-0">
                   <p className="text-gray-600 text-sm mb-4">
                     {course.description}
                   </p>
-                  <div className="flex items-center justify-between">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                     <span className="text-sm font-medium text-gray-500">
                       {course.platform}
                     </span>
-                    <Button size="sm" variant="outline" asChild>
+                    <Button size="sm" variant="outline" asChild className="w-full sm:w-auto">
                       <a
                         href={course.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center"
+                        className="flex items-center justify-center"
                       >
                         View Course
                         <ExternalLink className="ml-1 h-3 w-3" />
@@ -402,13 +402,13 @@ export default function CoursesPage() {
 
         {/* Call to Action when no analysis */}
         {!hasAnalysis && (
-          <div className="mt-12 text-center">
+          <div className="mt-8 sm:mt-12 text-center">
             <Card className="bg-blue-50 border-blue-200">
-              <CardContent className="py-12">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+              <CardContent className="py-8 sm:py-12">
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">
                   Want Personalized Recommendations?
                 </h3>
-                <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
+                <p className="text-gray-600 mb-4 sm:mb-6 max-w-2xl mx-auto">
                   Analyze your CV to get personalized course recommendations based on your skills and desired position.
                 </p>
                 <Button asChild size="lg">
