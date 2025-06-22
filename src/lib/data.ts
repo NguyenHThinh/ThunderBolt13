@@ -115,33 +115,6 @@ export const jobs: Job[] = [
 
 export const courses: Course[] = [
   {
-    id: "1",
-    name: "JavaScript Fundamentals",
-    skill: "JavaScript",
-    platform: "Udemy",
-    link: "https://udemy.com/javascript-course",
-    level: "beginner",
-    description: "Basic JavaScript course for beginners"
-  },
-  {
-    id: "2", 
-    name: "Advanced React Patterns",
-    skill: "React",
-    platform: "Frontend Masters",
-    link: "https://frontendmasters.com/react-advanced",
-    level: "advanced",
-    description: "Advanced React patterns for senior developers"
-  },
-  {
-    id: "3",
-    name: "Node.js API Development", 
-    skill: "Node.js",
-    platform: "Pluralsight",
-    link: "https://pluralsight.com/nodejs-api", 
-    level: "intermediate",
-    description: "Build RESTful APIs with Node.js and Express"
-  },
-  {
     id: "4",
     name: "Business English Communication",
     skill: "English", 
@@ -149,42 +122,6 @@ export const courses: Course[] = [
     link: "https://coursera.org/business-english",
     level: "intermediate",
     description: "Improve English communication skills for workplace"
-  },
-  {
-    id: "5",
-    name: "Python for Data Analysis",
-    skill: "Python",
-    platform: "edX", 
-    link: "https://edx.org/python-data-analysis",
-    level: "intermediate",
-    description: "Use Python for data analysis and visualization"
-  },
-  {
-    id: "6",
-    name: "TypeScript Deep Dive",
-    skill: "TypeScript",
-    platform: "Udemy",
-    link: "https://udemy.com/typescript-course",
-    level: "intermediate", 
-    description: "Master TypeScript for large-scale projects"
-  },
-  {
-    id: "7",
-    name: "Leadership Skills for Tech",
-    skill: "Leadership", 
-    platform: "LinkedIn Learning",
-    link: "https://linkedin.com/learning/leadership-tech",
-    level: "advanced",
-    description: "Leadership skills in technology environment"
-  },
-  {
-    id: "8",
-    name: "Database Design with SQL",
-    skill: "SQL",
-    platform: "Codecademy", 
-    link: "https://codecademy.com/sql-database",
-    level: "beginner",
-    description: "Database design and basic SQL fundamentals"
   },
   // AI Courses from about.html
   {
