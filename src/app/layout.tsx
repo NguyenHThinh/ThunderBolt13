@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { AnalysisProvider } from "@/lib/context/AnalysisContext";
+import UserDataProtectionPopup from "@/components/UserDataProtectionPopup";
 
 export const metadata: Metadata = {
   title: "THUNDERBOLT 13 - CV Analysis & Course Recommendations",
@@ -16,6 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`antialiased`}>
+        <UserDataProtectionPopup />
         <AnalysisProvider>{children}</AnalysisProvider>
       </body>
     </html>
